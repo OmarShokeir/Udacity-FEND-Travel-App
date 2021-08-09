@@ -1,5 +1,5 @@
-// Setup empty JS object to act as endpoint for all routes
-projectData = {};
+// Setup empty JS object to act as endpoint for GeoName API data
+geonameData = {};
 
 // Require Express to run server and routes
 const express = require('express');
@@ -25,5 +25,20 @@ function listening(){
     console.log("Server running");
     console.log(`Running on port: ${port}`);
 }
+
+// Adding the  GET route for the tempData from GeoNames API
+app.get('/all',function(req,res){
+    res.send(geonameData);
+})
+// Adding the POST route
+app.post('/add',function(req,res){
+    dataEntry ={
+        latitude: req.body.latitude,
+        longitude: req.body.longitude,
+        country: req.body.country
+    }
+    projectData = dataEntry;
+    res.send(geonameData);
+})
 
 
