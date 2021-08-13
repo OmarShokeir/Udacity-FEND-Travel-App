@@ -37,7 +37,7 @@ app.post('/add',function(req,res){
         longitude: req.body.longitude,
         country: req.body.country
     }
-    projectData = dataEntry;
+    geonameData = dataEntry;
     res.send(geonameData);
 })
 
