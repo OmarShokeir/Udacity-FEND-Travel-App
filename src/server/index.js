@@ -5,6 +5,7 @@ geonameData = {};
 const express = require('express');
 const bodyParser = require('body-parser');
 const { allowedNodeEnvironmentFlags } = require('process');
+const mockAPIResponse = require('./mockAPI.js')
 // Start up an instance of app
 const app = express();
 /* Middleware*/
@@ -25,6 +26,11 @@ function listening(){
     console.log("Server running");
     console.log(`Running on port: ${port}`);
 }
+
+// MockAPI to make sure the server is working well
+app.get('/test', function (req, res) {
+    res.send(mockAPIResponse)
+})
 
 // Adding the  GET route for the tempData from GeoNames API
 app.get('/all',function(req,res){

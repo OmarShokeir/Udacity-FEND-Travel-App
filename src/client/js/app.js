@@ -1,22 +1,27 @@
 /* Global Variables */
-let preZip = 'http://api.geonames.org/postalCodeSearchJSON?postalcode=';
+let preZip = 'http://api.geonames.org/searchJSON?q=';
 let postZip = '&maxRows=10&username=omarshokeir';
 // Create a new date instance dynamically with JS
+
+
+
 let d = new Date();
 let newDate = d.getMonth() + 1 + '.' + d.getDate() + '.' + d.getFullYear();
 
 document.getElementById('generate').addEventListener('click', performAction);
 
-function performAction() {
+function performAction(e) {
+    e.preventDefault();
     const zipCode = document.getElementById('zip').value;
+    const tripDate = document.getElementById('date').value;
     getData(preZip, zipCode, postZip)
         .then(function (data) {
             // Add data
             console.log(data);
             postData('/add', {
-                latitude: data.postalCodes[0].lat,
-                longitude: data.postalCodes[0].lng,
-                country: data.postalCodes[0].countryCode
+                latitude: data.geonames[0].lat,
+                longitude: data.geonames[0].lng,
+                country: data.geonames[0].countryCode
             });
         })
 };
@@ -54,7 +59,7 @@ const postData = async (url = '', data = {}) => {
     }
 }
 
-
+export { performAction }
 
 
 
