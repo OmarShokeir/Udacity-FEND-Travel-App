@@ -27,13 +27,24 @@ function performAction(e) {
     const diffDays = Math.round(Math.abs((today - tripDate) / oneDay));
     getData(preZip, zipCode, postZip)
         .then(function (data) {
-            // Add data
-            console.log(data);
-            postData('/add', {
-                latitude: data.geonames[0].lat,
-                longitude: data.geonames[0].lng,
-                country: data.geonames[0].countryCode
-            });
+            if (diffDays <= 7) {
+                getCurrentWeather(preWeather, data.geonames[0].lat, postLat, data.geonames[0].lng, weatherKey)
+                    .then(function (data) {
+                        console.log(data);
+                        postData('/add', {
+                            temp: data.data[0].app_temp
+                        });
+                    })
+            }
+            else {
+                getPredictedWeather(predictedWeatherBase, data.geonames[0].lat, predictedPostLat, data.geonames[0].lng, weatherKey)
+                .then(function (data) {
+                    console.log(data);
+                    postData('/add', {
+                        temp: data.data[0].app_max_temp
+                    });
+                })
+            }
         })
 };
 // Async function to get the data from the API
@@ -47,7 +58,17 @@ const getData = async (preZip, zip, postZip) => {
         console.log("Error: ", error);
     }
 }
-const getCurrentWeather = async (preWeather, lat, postLat, lon, weatherKey) => {
+const getCurrentWeather = async (predictedWeatherBase, lat, predictedPostLat, lon, weatherKey) => {
+    const res = await fetch(predictedWeatherBase + lat + predictedPostLat + lon + weatherKey)
+    try {
+        const data = await res.json();
+        console.log(data);
+        return data;
+    } catch (error) {
+        console.log("Error: ", error);
+    }
+}
+const getPredictedWeather = async (preWeather, lat, postLat, lon, weatherKey) => {
     const res = await fetch(preWeather + lat + postLat + lon + weatherKey)
     try {
         const data = await res.json();

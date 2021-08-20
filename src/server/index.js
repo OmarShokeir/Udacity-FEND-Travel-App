@@ -39,9 +39,7 @@ app.get('/all',function(req,res){
 // Adding the POST route
 app.post('/add',function(req,res){
     dataEntry ={
-        latitude: req.body.latitude,
-        longitude: req.body.longitude,
-        country: req.body.country
+        temp: req.body.temp
     }
     geonameData = dataEntry;
     res.send(geonameData);
