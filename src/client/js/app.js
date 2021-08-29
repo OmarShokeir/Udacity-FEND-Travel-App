@@ -20,6 +20,22 @@ const today = new Date();
 
 
 document.getElementById('generate').addEventListener('click', performAction);
+document.addEventListener("load", fillCountries);
+
+function fillCountries(e) {
+    e.preventDefault();
+    getCountries()
+        .then(function (data) {
+            select = document.getElementById('zip');
+
+            for (var i = 0; i <= data.length; i++) {
+                var opt = document.createElement('option');
+                opt.value = data[i];
+                opt.innerHTML = data[i];
+                select.appendChild(opt);
+            }
+        });
+}
 
 function performAction(e) {
     e.preventDefault();
@@ -77,6 +93,21 @@ const getImage = async (pixabayBase, countryName) => {
     }
     catch (error) {
         console.log("Error:", error);
+    }
+}
+const getCountries = async () => {
+    const res = await fetch("https://restcountries.eu/rest/v2/all")
+    try {
+        array = []
+        const data = await res.json();
+        for (i = 0; i < data.length; i++) {
+            array[i] = data[i].name
+        }
+        console.log(array);
+        return array;
+    }
+    catch (error) {
+        console.log("Error:", error)
     }
 }
 const getCurrentWeather = async (predictedWeatherBase, lat, predictedPostLat, lon, weatherKey) => {
