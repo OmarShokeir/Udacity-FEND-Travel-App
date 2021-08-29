@@ -1,5 +1,6 @@
 // Setup empty JS object to act as endpoint for GeoName API data
 geonameData = {};
+imageData = {};
 
 // Require Express to run server and routes
 const express = require('express');
@@ -20,7 +21,7 @@ app.use(cors());
 app.use(express.static('dist'))
 
 // Setup Server
-const port = 8000;
+const port = 8080;
 const server = app.listen(port, listening);
 function listening(){
     console.log("Server running");
@@ -36,6 +37,10 @@ app.get('/test', function (req, res) {
 app.get('/all',function(req,res){
     res.send(geonameData);
 })
+// Adding the GET route for the image from Pixabay API
+app.get('/image', function(req,res){
+    res.send(imageData);
+})
 // Adding the POST route
 app.post('/add',function(req,res){
     dataEntry ={
@@ -43,6 +48,13 @@ app.post('/add',function(req,res){
     }
     geonameData = dataEntry;
     res.send(geonameData);
+})
+app.post('/addImage', function(req,res){
+    dataEntry = {
+        image: req.body.img
+    }
+    imageData = dataEntry;
+    res.send(imageData)
 })
 
 
