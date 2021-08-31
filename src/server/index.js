@@ -51,7 +51,7 @@ app.post('/add',function(req,res){
 })
 app.post('/addImage', function(req,res){
     dataEntry = {
-        image: req.body.img
+        image: req.body.image
     }
     imageData = dataEntry;
     res.send(imageData)

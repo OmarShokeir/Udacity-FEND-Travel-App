@@ -20,15 +20,15 @@ const today = new Date();
 
 
 document.getElementById('generate').addEventListener('click', performAction);
-document.addEventListener("load", fillCountries);
+document.addEventListener("DOMContentLoaded", fillCountries);
 
 function fillCountries(e) {
     e.preventDefault();
     getCountries()
         .then(function (data) {
-            select = document.getElementById('zip');
+            let select = document.getElementById('zip');
 
-            for (var i = 0; i <= data.length; i++) {
+            for (let i = 0; i <= data.length; i++) {
                 var opt = document.createElement('option');
                 opt.value = data[i];
                 opt.innerHTML = data[i];
@@ -64,7 +64,7 @@ function performAction(e) {
             }
             updateUI();
         });
-    getImage(pixabayBase, zip)
+    getImage(pixabayBase, zipCode)
         .then(function (data) {
             console.log(data)
             postData('/addImage', {
@@ -98,9 +98,9 @@ const getImage = async (pixabayBase, countryName) => {
 const getCountries = async () => {
     const res = await fetch("https://restcountries.eu/rest/v2/all")
     try {
-        array = []
+        var array = []
         const data = await res.json();
-        for (i = 0; i < data.length; i++) {
+        for (let i = 0; i < data.length; i++) {
             array[i] = data[i].name
         }
         console.log(array);
