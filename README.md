@@ -11,4 +11,7 @@ This project is the last project of Udacity FEND Nanodegree (Capstone).
 - Geonames API: Gives us the coordinates from the Zip code.
 - Pixabay API: Display image of the location entered.
 
+# Elective used:
+
+- REST Countries List API used to fill countries list for the user automatically.
 
