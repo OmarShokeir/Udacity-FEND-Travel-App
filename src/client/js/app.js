@@ -51,6 +51,7 @@ function performAction(e) {
                         postData('/add', {
                             temp: data.data[0].app_temp
                         });
+                        updateUI();
                     })
             }
             else {
@@ -60,9 +61,9 @@ function performAction(e) {
                         postData('/add', {
                             temp: data.data[0].app_max_temp
                         });
+                        updateUI();
                     })
             }
-            updateUI();
         });
     getImage(pixabayBase, zipCode)
         .then(function (data) {
@@ -70,8 +71,8 @@ function performAction(e) {
             postData('/addImage', {
                 image: data.hits[0].webformatURL
             })
+            updateImage();
         });
-    updateImage();
 };
 // Async function to get the data from the API
 const getData = async (preZip, zip, postZip) => {
@@ -132,7 +133,7 @@ const getPredictedWeather = async (preWeather, lat, postLat, lon, weatherKey) =>
 }
 
 // POST data
-const postData = async (url = '', data = { }) => {
+const postData = async (url = '', data = {}) => {
     console.log(data);
     const response = await fetch(url, {
         method: 'POST',
