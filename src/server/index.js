@@ -57,4 +57,5 @@ app.post('/addImage', function(req,res){
     res.send(imageData)
 })
 
+export { listening }
 

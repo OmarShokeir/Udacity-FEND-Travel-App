@@ -1,6 +1,6 @@
-import { fillCountries } from "../app.js"
+import { performAction } from "../app.js"
 
 
-test('Testing the fill countries API', ()=> {
-  expect(fillCountries).toBeDefined();
+test('Testing the fill performAction', ()=> {
+  expect(performAction).toBeDefined();
 })

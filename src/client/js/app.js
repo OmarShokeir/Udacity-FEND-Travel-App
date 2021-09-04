@@ -179,3 +179,4 @@ const updateImage = async () => {
 }
 
 
+export { performAction }
