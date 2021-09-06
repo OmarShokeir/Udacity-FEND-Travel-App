@@ -1,6 +1,6 @@
 // Setup empty JS object to act as endpoint for GeoName API data
-geonameData = {};
-imageData = {};
+let geonameData = {};
+let imageData = {};
 
 // Require Express to run server and routes
 const express = require('express');
@@ -57,5 +57,6 @@ app.post('/addImage', function(req,res){
     res.send(imageData)
 })
 
-export { listening }
+exports.listening = listening;
+
 

@@ -1,6 +1,6 @@
-import { listening } from "../index.js"
-
+// import { listening } from "../index.js"
+const server = require('../index.js')
 
 test('Testing the server', ()=> {
-  expect(listening).toBeDefined();
+  expect(server.listening).toBeDefined();
 })

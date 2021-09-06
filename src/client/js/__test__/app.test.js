@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import { performAction } from "../app.js"
 
 

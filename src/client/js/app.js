@@ -1,3 +1,5 @@
+
+
 /* Global Variables */
 let preZip = 'http://api.geonames.org/searchJSON?q=';
 let postZip = '&maxRows=10&username=omarshokeir';
@@ -19,8 +21,10 @@ const today = new Date();
 
 
 
-document.getElementById('generate').addEventListener('click', performAction);
-document.addEventListener("DOMContentLoaded", fillCountries);
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById('generate').addEventListener('click', performAction);
+    document.addEventListener("DOMContentLoaded", fillCountries);
+})
 
 function fillCountries(e) {
     e.preventDefault();
@@ -165,7 +169,6 @@ const updateUI = async () => {
     }
 }
 
-export { performAction }
 
 const updateImage = async () => {
     const request = await fetch('/image');
