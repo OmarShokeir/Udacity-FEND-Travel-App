@@ -21,10 +21,9 @@ const today = new Date();
 
 
 
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById('generate').addEventListener('click', performAction);
-    document.addEventListener("DOMContentLoaded", fillCountries);
-})
+document.getElementById('generate').addEventListener('click', performAction);
+document.addEventListener("DOMContentLoaded", fillCountries);
+
 
 function fillCountries(e) {
     e.preventDefault();
