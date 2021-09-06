@@ -1,4 +1,4 @@
-
+import 'regenerator-runtime/runtime'
 
 /* Global Variables */
 let preZip = 'http://api.geonames.org/searchJSON?q=';
@@ -20,10 +20,10 @@ const today = new Date();
 
 
 
-
-document.getElementById('generate').addEventListener('click', performAction);
-document.addEventListener("DOMContentLoaded", fillCountries);
-
+window.onload = function () {
+    document.getElementById('generate').addEventListener('click', performAction);
+    document.addEventListener("DOMContentLoaded", fillCountries);
+}
 
 function fillCountries(e) {
     e.preventDefault();
